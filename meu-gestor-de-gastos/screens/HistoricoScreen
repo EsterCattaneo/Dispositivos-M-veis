@@ -1,0 +1,23 @@
+import React, { useState } from 'react';
+import { View, FlatList } from 'react-native';
+import ItemGasto from '../components/ItemGasto';
+import Titulo from '../components/Titulo';
+import { useContext } from 'react';
+import { GastosContext } from '../context/GastosContext';
+
+
+export default function HistoricoScreen() {
+  const { gastos } = useContext(GastosContext);
+
+  return (
+    <View>
+      <Titulo texto="Histórico dos Gastos" />
+      <FlatList
+        data={gastos}
+        keyExtractor={(item, index) => index.toString()}
+        renderItem={({ item }) => <ItemGasto gasto={item} />}
+      />
+    </View>
+  );
+}
+
